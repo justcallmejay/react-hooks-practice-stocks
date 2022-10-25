@@ -1,15 +1,24 @@
 import React from "react";
-import Stock from "./Stock";
 
-function PortfolioContainer() {
+function PortfolioContainer({ myStocks, handleDeleteStock }) {
+
+  const renderMyPortfolio = myStocks.map(stocks => {
   return (
-    <div>
-      <h2>My Portfolio</h2>
-      {
-        //render your portfolio stocks here
-      }
+      <div className="card" key={stocks.id} onClick={() => handleDeleteStock(stocks)} >
+        <div className="card-body">
+          <h5 className="card-title">{stocks.name}</h5>
+          <p className="card-text">{stocks.ticker}: {stocks.price}</p>
+      </div>
     </div>
+    )}
   );
-}
 
+  return (
+    <>
+    <h2>My Portfolio</h2>
+    <p>{renderMyPortfolio}</p>
+    </>
+  )
+}
 export default PortfolioContainer;
+
